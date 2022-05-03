@@ -10,5 +10,3 @@ WORKDIR /service
 
 RUN pip install -U pip && \
     pip install -r requirements.txt --src /usr/local/src 
-
-CMD ["python", "main.py"]

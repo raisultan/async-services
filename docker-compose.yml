@@ -3,7 +3,10 @@ version: "3"
 services:
   api:
     build: ./
+    command: gunicorn main:create_app --bind 0.0.0.0:${API_PORT} ${GUNICORN_RELOAD:-}
+      --worker-class aiohttp.GunicornWebWorker --log-level=${GUNICORN_LOGLEVEL:-info}
+      --worker-connections=${GINICORN_WORKERS:-1000}
     ports:
-      - 8000:8000
+      - ${API_EXTERNAL_IP:-127.0.0.1}:${API_PORT}:${API_PORT}
     volumes:
       - .:/service
